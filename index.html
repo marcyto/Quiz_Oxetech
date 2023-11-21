@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="reset.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Secti Dev Quiz</title>
+  </head>
+  <body id="body">
+    <div id="root"></div>
+    <header class="container-fluid mb-2 mt-2 p-2">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <img style="margin-left: 30px;" src="logo_oxetech.svg" height="125" width="300" />
+        <img style="margin: 10px;" src="img.png" height="125" width="400" />
+      </div>
+      <div class="row mx-auto mt-4">
+        <div
+          class="col-auto my-auto mr-auto ml-1 rounded custom-border"
+          id="custom-timer"
+        >
+          Tempo: 20
+        </div>
+        <div class="col-sm-8 my-auto mx-auto rounded" id="custom-header">
+          <h1 class="noselect">DevQuiz v2023</h1>
+          <br>
+          <br>
+        </div>
+        <div
+          class="col-auto my-auto mr-1 ml-3 rounded custom-border"
+          id="custom-score"
+        >
+          Pontuação: 000
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="container-fluid mt-2 px-2 pt-2">
+        <div class="row mx-auto rounded">
+          <div class="col my-auto rounded">
+            <button
+              class="rounded mx-auto custom-border button noselect"
+              id="start-button"
+              type="button"
+            >
+              INICIAR
+            </button>
+            <button
+              class="rounded mx-auto custom-border button noselect"
+              id="score-button"
+              type="button"
+              style="margin-top: 20px"
+            >
+              RANKING
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container px-2" id="question-display">
+        <div class="row mx-auto rounded mb-3">
+          <div class="col my-auto rounded">
+            <h2
+              class="rounded noselect mx-auto p-2 custom-border"
+              id="quiz-question"
+            ></h2>
+          </div>
+        </div>
+        <div class="row mx-auto rounded mb-3">
+          <div id="quiz-code-box" class="col my-auto rounded">
+            <code id="quiz-code"></code>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm my-auto">
+            <p
+              class="answer-item noselect mx-auto p-2 rounded custom-border"
+              id="answer1"
+            ></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm my-auto">
+            <p
+              class="answer-item noselect mx-auto p-2 rounded custom-border"
+              id="answer2"
+            ></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm my-auto">
+            <p
+              class="answer-item noselect mx-auto p-2 rounded custom-border"
+              id="answer3"
+            ></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm my-auto">
+            <p
+              class="answer-item noselect mx-auto p-2 rounded custom-border"
+              id="answer4"
+            ></p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="position-absolute" id="overlay-background"></div>
+    <section
+      class="container-fluid position-absolute p-2 rounded custom-border"
+      id="game-over"
+    >
+      <div class="row mb-3" id="game-over-splash">
+        <div class="col">
+          <span
+            id="game-over-score"
+            class="custom-border px-2 color-change-score"
+          ></span>
+        </div>
+      </div>
+
+      <form id="name-form">
+        <div class="form-group form-row">
+          <span class="custom-border col-sm-3 my-auto rounded"
+            >Seu Nome:</span
+          >
+          <div class="col-sm-6">
+            <input
+              type="text"
+              class="form-control form-control-sm mt-2 mb-2"
+              id="userName"
+              placeholder="Coloque aqui o seu nome e sobrenome"
+            />
+          </div>
+          <button
+            type="button"
+            class="custom-border rounded col-sm-3 p-1"
+            id="submit-btn"
+          >
+            Registrar no Ranking
+          </button>
+        </div>
+        <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+          <img src="qr-code-cadastro-oxetech.png" width="150" height="150" />
+          <div style="font-size: 24px;
+          color: #FFFFFF;
+          font-style: italic;
+          width: 303px;
+          text-align: left;
+          margin-left: 15px;
+          font-weight: bold;
+          font-family: monospace;"
+          >Acesse o QRCODE e faça parte do time de desenvolvedores de Alagoas!</div>
+        </div>
+      </form>
+
+      <div class="row" id="score-list">
+        <div class="col">
+          <hr class="dashedLine mt-0 rounded" />
+          <table class="table table-hover table-sm table-dark">
+            <thead scope="col">
+              <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Pontuação</th>
+              </tr>
+            </thead>
+            <tbody id="dynamic-list" class="mx-auto underOverLine"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="row" id="go-again">
+        <button id="clear-scores" type="button" class="btn btn-success">LIMPAR</button>
+        <button id="retake-quiz" type="button" class="btn btn-success">VOLTAR</button>
+      </div>
+    </section>
+
+    <footer class="container-fluid mt-4" id="footer">
+      <div class="row">
+        <div class="col-sm-12 text-center instructions">
+          <b>  
+            Responda as perguntas até que o cronômetro expire.<br />
+            Você tem 2 minutos para responder as perguntas.<br />
+            Cada resposta errada irá subtrair algum tempo!
+          </b>
+        </div>
+      </div>
+    </footer>
+    <script src="script.jsx"></script>
+  </body>
+</html>
